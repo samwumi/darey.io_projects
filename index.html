@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rental Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="index.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+  <style>
+    .zoom-in {
+      animation: zoom 5s ease-in-out forwards;
+    }
+  
+    @keyframes zoom {
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.1);
+      }
+    }
+  </style>
+  
+
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <!-- Navbar -->
+<nav class="absolute top-0 left-0 w-full z-10 text-white">
+    <div class="flex justify-between items-center px-6 py-4 bg-transparent">
+      <h1 class="text-xl font-bold">RentalHub</h1>
+      <ul class="flex gap-6 text-sm">
+        <li><a href="#" class="hover:text-blue-300">Home</a></li>
+        <li><a href="#products" class="hover:text-blue-300">Events</a></li>
+        <li><a href="#contact" class="hover:text-blue-300">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  
+
+  <!-- Hero Carousel -->
+<div x-data="{ current: 0, images: [
+    'img/hero1.jpg',
+    'img/hero2.jpg',
+    'img/hero3.jpg'
+  
+  ]}" x-init="setInterval(() => current = (current + 1) % images.length, 5000)" class="relative w-full h-[60vh] overflow-hidden">
+  
+    <!-- Carousel Images -->
+    <template x-for="(image, index) in images" :key="index">
+      <div x-show="current === index" class="absolute inset-0 transition-opacity duration-1000" x-transition:enter="opacity-0" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100">
+        <img :src="image" class="w-full h-full object-cover zoom-in" />
+      </div>
+    </template>
+  
+    <!-- Overlay text -->
+    <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white text-center px-4">
+      <h2 class="text-3xl md:text-5xl font-bold mb-4">Find Your Perfect Rental</h2>
+      <p class="text-lg mb-6">Apartments, houses, offices – all in one place.</p>
+      <a href="#products" class="bg-yellow-500 hover:bg-yellow-600 px-6 py-3 rounded text-white font-semibold">Explore Listings</a>
+    </div>
+  </div>
+  
+  <!-- Featured Listings -->
+<section id="products" class="py-16 px-4 bg-gray-100">
+    <div class="max-w-6xl mx-auto text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4">Featured Rentals</h2>
+      <p class="text-gray-600">Browse our hand-picked spaces available for rent.</p>
+    </div>
+  
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+      <!-- Listing Card -->
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <img src="img/hero1.jpg" class="w-full h-48 object-cover" alt="Rental 1" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Modern Apartment</h3>
+          <p class="text-gray-600 mb-4">2 bed · 2 bath · Lekki, Lagos</p>
+          <a href="#" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Make Enquiry</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <img src="img/hero1.jpg" class="w-full h-48 object-cover" alt="Rental 1" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Modern Apartment</h3>
+          <p class="text-gray-600 mb-4">2 bed · 2 bath · Lekki, Lagos</p>
+          <a href="#" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Make Enquiry</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+        <img src="img/hero1.jpg" class="w-full h-48 object-cover" alt="Rental 1" />
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2">Modern Apartment</h3>
+          <p class="text-gray-600 mb-4">2 bed · 2 bath · Lekki, Lagos</p>
+          <a href="#" class="inline-block bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Make Enquiry</a>
+        </div>
+      </div>
+      
+  
+  
+      <!-- Repeat the above card with other listings -->
+      <!-- Copy and update the image/text for more cards -->
+    </div>
+  </section>
+  
+  <!-- How It Works -->
+<section class="py-16 px-4 bg-white">
+  <div class="max-w-6xl mx-auto text-center mb-12">
+    <h2 class="text-4xl font-bold mb-4">How It Works</h2>
+    <p class="text-gray-600">Rent your perfect space in just a few simple steps.</p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+    <!-- Step 1 -->
+    <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition duration-300">
+      <div class="text-blue-600 text-5xl mb-4">🔍</div>
+      <h3 class="text-xl font-semibold mb-2">Browse Listings</h3>
+      <p class="text-gray-600">Explore apartments, offices, and more based on your location and budget.</p>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition duration-300">
+      <div class="text-blue-600 text-5xl mb-4">📞</div>
+      <h3 class="text-xl font-semibold mb-2">Make Enquiry</h3>
+      <p class="text-gray-600">Click “Make Enquiry” to connect with the property manager or owner.</p>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="bg-gray-50 p-6 rounded-2xl shadow hover:shadow-lg transition duration-300">
+      <div class="text-blue-600 text-5xl mb-4">🔑</div>
+      <h3 class="text-xl font-semibold mb-2">Get the Keys</h3>
+      <p class="text-gray-600">Book a viewing, seal the deal, and move in with ease.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white py-12 px-4">
+  <h2 class="text-3xl font-bold text-center mb-8">What Our Clients Say</h2>
+  <div class="max-w-xl mx-auto relative overflow-hidden">
+    <div id="testimonial-container" class="flex transition-transform duration-500 ease-in-out">
+      <!-- Testimonial 1 -->
+      <div class="min-w-full px-4">
+        <div class="bg-white border-l-4 border-yellow-500 shadow-lg p-6 rounded-lg">
+          <p class="text-gray-700 mb-4">“Booking my apartment through this platform was so easy. The pictures matched reality, and the host was amazing. Definitely using it again!”</p>
+          <div class="text-sm font-semibold text-gray-800">Amaka from Lagos</div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="min-w-full px-4">
+        <div class="bg-white border-l-4 border-yellow-500 shadow-lg p-6 rounded-lg">
+          <p class="text-gray-700 mb-4">“We listed our shortlet for 3 weeks and got fully booked in just 4 days. The visibility this site gives is unmatched.”</p>
+          <div class="text-sm font-semibold text-gray-800">Kingsley, Property Owner</div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="min-w-full px-4">
+        <div class="bg-white border-l-4 border-yellow-500 shadow-lg p-6 rounded-lg">
+          <p class="text-gray-700 mb-4">“Needed a weekend place for my team’s retreat. Found the perfect spot in Lekki, and everything was smooth from booking to checkout.”</p>
+          <div class="text-sm font-semibold text-gray-800">Chinwe from Abuja</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const container = document.getElementById('testimonial-container');
+  let index = 0;
+  const total = container.children.length;
+
+  setInterval(() => {
+    index = (index + 1) % total;
+    container.style.transform = `translateX(-${index * 100}%)`;
+  }, 4000);
+</script>
+
+<section id="enquiry" class="py-16 px-6 bg-white relative overflow-hidden">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center max-w-4xl mx-auto mb-14 relative">
+      <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 leading-tight">
+        Make Every Moment Unforgettable
+      </h2>
+      <p class="mt-4 text-lg md:text-xl text-gray-600">
+        Luxury rentals for weddings, birthdays, and corporate events across Nigeria. We help you create elegant, stress-free experiences your guests will never forget.
+      </p>
+    
+      <!-- Gold accent underline -->
+      <div class="w-24 h-1 bg-yellow-500 mx-auto mt-6 rounded-full"></div>
+    
+      <!-- Optional sparkle effect -->
+      <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-6">
+        <svg class="w-6 h-6 text-yellow-400 animate-ping" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 15l-3.09 1.63.59-3.43L5 9.24l3.45-.5L10 5.5l1.55 3.24L15 9.24l-2.5 2.96.59 3.43z" />
+        </svg>
+      </div>
+    </div>
+    
+    
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+      <!-- Left: Text + Icons -->
+      <div class="space-y-6">
+        <div class="flex items-start space-x-4">
+          <div class="text-yellow-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 10c0 5-9 12-9 12s-9-7-9-12a9 9 0 1118 0z" /></svg>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-800">Head Office</h4>
+            <p class="text-sm text-gray-500">Lagos, Nigeria</p>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4">
+          <div class="text-yellow-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 0a2 2 0 00-2 2v6a2 2 0 002 2h18a2 2 0 002-2v-6a2 2 0 00-2-2M3 8l9 6 9-6" /></svg>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-800">Email Us</h4>
+            <p class="text-sm text-gray-500">events@yourbusiness.ng</p>
+          </div>
+        </div>
+
+        <div class="flex items-start space-x-4">
+          <div class="text-yellow-500">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+              viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round"
+                d="M3 5h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 7M7 13l-1.35 5.4a1 1 0 00.98 1.2H17a1 1 0 00.98-.8L19 13H7z" /></svg>
+          </div>
+          <div>
+            <h4 class="font-semibold text-gray-800">Call Us</h4>
+            <p class="text-sm text-gray-500">+234 800 123 4567</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <form action="your-server-endpoint" method="POST" class="bg-gray-50 p-6 rounded-xl shadow-md space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input type="text" name="name" placeholder="Full Name" required
+            class="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none text-sm">
+          <input type="tel" name="phone" placeholder="Phone Number" required
+            class="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none text-sm">
+        </div>
+        <input type="email" name="email" placeholder="Email Address" required
+          class="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none text-sm">
+        <textarea name="message" rows="4" placeholder="Tell us about your event..."
+          class="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-yellow-500 focus:outline-none text-sm" required></textarea>
+        <button type="submit"
+          class="w-full py-3 bg-yellow-500 hover:bg-yellow-600 transition-colors text-white font-semibold rounded-md shadow-md">
+          Submit Enquiry
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Subtle background effect -->
+  <div class="absolute top-0 left-0 w-48 h-48 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+</section>
+
+
+<section id="faq" class="py-20 bg-gray-50">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-4xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+    <p class="text-lg text-gray-600 mb-12">
+      We know how important it is to have the right information. Here are the answers to some of the most common questions.
+    </p>
+
+    <div class="space-y-4 text-left">
+      <!-- FAQ 1 -->
+      <details class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+        <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-gray-800">
+          How early should I book my rentals?
+          <svg class="w-5 h-5 text-yellow-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <p class="mt-4 text-gray-600">
+          For the best selection, we recommend booking at least two weeks in advance. However, we may accommodate last-minute bookings depending on availability.
+        </p>
+      </details>
+
+      <!-- FAQ 2 -->
+      <details class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+        <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-gray-800">
+          Do you deliver outside Lagos?
+          <svg class="w-5 h-5 text-yellow-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <p class="mt-4 text-gray-600">
+          Yes, we cater to events across Nigeria. Extra delivery charges may apply depending on the distance.
+        </p>
+      </details>
+
+      <!-- FAQ 3 -->
+      <details class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+        <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-gray-800">
+          What happens if I need to cancel my booking?
+          <svg class="w-5 h-5 text-yellow-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <p class="mt-4 text-gray-600">
+          We offer flexible cancellation policies. Please contact us at least 48 hours before the event for full details.
+        </p>
+      </details>
+
+      <!-- FAQ 4 -->
+      <details class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all">
+        <summary class="flex justify-between items-center cursor-pointer text-lg font-medium text-gray-800">
+          Do you offer event setup and takedown?
+          <svg class="w-5 h-5 text-yellow-500 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </summary>
+        <p class="mt-4 text-gray-600">
+          Yes! We handle everything from delivery to setup and takedown, so you can focus on enjoying the event.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section id="cta" class="bg-yellow-500 py-16 text-center">
+  <h2 class="text-4xl font-bold text-white mb-4">Ready to Book Your Event?</h2>
+  <p class="text-lg text-white mb-6">
+    Don't wait! Reserve your rentals today to ensure your event is a success. We're here to help every step of the way.
+  </p>
+  <a href="#enquiry" class="bg-white text-yellow-500 hover:bg-yellow-400 hover:text-white py-3 px-8 rounded-full text-xl font-semibold transition">
+    Make an Enquiry
+  </a>
+</section>
+
+<!-- Soft Divider -->
+<div class="h-1 bg-gray-200 mx-auto w-1/4 my-4"></div>
+
+<!-- Footer Section -->
+<footer class="bg-gray-800 text-white py-12">
+  <div class="max-w-6xl mx-auto px-4 text-center">
+    <h3 class="text-3xl font-bold mb-4">Get in Touch</h3>
+    <p class="text-lg mb-6">Have questions? We're here to help.</p>
+    <div class="flex justify-center space-x-8 mb-8">
+      <a href="mailto:info@example.com" class="hover:text-yellow-500">Email Us</a>
+      <a href="tel:+2348000000000" class="hover:text-yellow-500">Call Us</a>
+      <a href="#" class="hover:text-yellow-500">Follow Us</a>
+    </div>
+    <p class="text-sm text-gray-400">© 2025 Your Company. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>
